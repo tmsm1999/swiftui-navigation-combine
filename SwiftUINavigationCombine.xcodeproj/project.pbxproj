@@ -27,6 +27,8 @@
 		CFB895512C4887CD00F104A1 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895502C4887CD00F104A1 /* AppView.swift */; };
 		CFB895532C48917E00F104A1 /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895522C48917E00F104A1 /* TabPageView.swift */; };
 		CFB9198D2C49455B00159B1F /* SheetPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9198C2C49455B00159B1F /* SheetPageViewModel.swift */; };
+		CFB919902C4960FB00159B1F /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB9198F2C4960FB00159B1F /* Sheet.swift */; };
+		CFB919922C4971E800159B1F /* SheetPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB919912C4971E800159B1F /* SheetPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		CFB895502C4887CD00F104A1 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		CFB895522C48917E00F104A1 /* TabPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPageView.swift; sourceTree = "<group>"; };
 		CFB9198C2C49455B00159B1F /* SheetPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPageViewModel.swift; sourceTree = "<group>"; };
+		CFB9198F2C4960FB00159B1F /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
+		CFB919912C4971E800159B1F /* SheetPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				CFB9198C2C49455B00159B1F /* SheetPageViewModel.swift */,
+				CFB9198F2C4960FB00159B1F /* Sheet.swift */,
+				CFB919912C4971E800159B1F /* SheetPageView.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -267,6 +273,8 @@
 				CFB895382C47C6CD00F104A1 /* ServiceLocator.swift in Sources */,
 				CFB895422C47D63900F104A1 /* ThreeView.swift in Sources */,
 				CFB8951F2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift in Sources */,
+				CFB919902C4960FB00159B1F /* Sheet.swift in Sources */,
+				CFB919922C4971E800159B1F /* SheetPageView.swift in Sources */,
 				CFB8954C2C48127B00F104A1 /* Tab.swift in Sources */,
 				CFB8953A2C47C8A700F104A1 /* OneView.swift in Sources */,
 				CFB895442C47D81D00F104A1 /* FourViewModel.swift in Sources */,

@@ -47,6 +47,10 @@ final class OneViewModel: OneViewModelRepresentable {
                 case .pushThree:
                     let threeViewModel = ThreeViewModel.make(navigationAction: navigationAction)
                     navigationAction.send(.push(.three(threeViewModel)))
+                case .presentOne:
+                    let newNavigationAction = PassthroughSubject<Sheet.NavigationAction, Never>()
+                    let oneViewModel = OneViewModel.make(navigationAction: newNavigationAction)
+                    navigationAction.send(.present(.one(oneViewModel)))
                 }
             }
             .store(in: &subscriptions)
@@ -59,6 +63,7 @@ extension OneViewModel {
 
         case pushTwo
         case pushThree
+        case presentOne
     }
 }
 

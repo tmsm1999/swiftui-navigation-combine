@@ -11,15 +11,18 @@ import SwiftUI
 
 protocol NavigationServiceRepresentable {
 
-    var action: PassthroughSubject<NavigationService.TabAction, Never> { get }
+    var tabAction: PassthroughSubject<NavigationService.TabAction, Never> { get }
+    var sheetAction: PassthroughSubject<NavigationService.SheetAction, Never> { get }
     var statePublisher: Published<NavigationService.State>.Publisher { get }
+    var presentSheetAction: PassthroughSubject<NavigationService.Destination?, Never> { get }
 }
 
 typealias Paths = [Tab: NavigationPath]
 
 final class NavigationService: NavigationServiceRepresentable {
 
-    var action = PassthroughSubject<TabAction, Never>()
+    var tabAction = PassthroughSubject<TabAction, Never>()
+    var sheetAction = PassthroughSubject<SheetAction, Never>()
 
     @Published private var state: NavigationService.State
     var statePublisher: Published<NavigationService.State>.Publisher { $state }
@@ -31,6 +34,7 @@ final class NavigationService: NavigationServiceRepresentable {
     ]
 
     private var sheetPath = NavigationPath()
+    var presentSheetAction = PassthroughSubject<NavigationService.Destination?, Never>()
 
     init() {
 
@@ -41,7 +45,7 @@ final class NavigationService: NavigationServiceRepresentable {
 
     private func setUpBindings() {
         
-        action
+        tabAction
             .map { [weak self] action in
 
                 guard let self else { return .error }
@@ -54,6 +58,28 @@ final class NavigationService: NavigationServiceRepresentable {
                     if !path.isEmpty { paths[tab]?.removeLast() }
                 case .popToRoot(let tab):
                     paths[tab] = NavigationPath()
+                }
+
+                return .update(tabsPaths: paths, sheetPath: sheetPath)
+            }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$state)
+
+        sheetAction
+            .map { [weak self] action in
+
+                guard let self else { return .error }
+                switch action {
+                case .push(let destination):
+                    sheetPath.append(destination)
+                case .pop:
+                    if !sheetPath.isEmpty { sheetPath.removeLast() }
+                case .popToRoot:
+                    sheetPath = NavigationPath()
+                case .present(let destination):
+                    presentSheetAction.send(destination)
+                case .dismiss:
+                    presentSheetAction.send(nil)
                 }
 
                 return .update(tabsPaths: paths, sheetPath: sheetPath)
@@ -79,6 +105,15 @@ extension NavigationService {
         case push(Destination, Tab)
         case pop(Tab)
         case popToRoot(Tab)
+    }
+
+    enum SheetAction {
+
+        case push(Destination)
+        case pop
+        case popToRoot
+        case present(Destination)
+        case dismiss
     }
 }
 

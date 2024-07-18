@@ -26,6 +26,10 @@ struct OneView<ViewModel: OneViewModelRepresentable>: View {
             Button("Push Three") {
                 viewModel.action.send(.pushThree)
             }
+
+            Button("Present One") {
+                viewModel.action.send(.presentOne)
+            }
         }
         .navigationTitle("One")
     }

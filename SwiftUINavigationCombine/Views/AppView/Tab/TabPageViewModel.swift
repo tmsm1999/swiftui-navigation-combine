@@ -52,11 +52,13 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
 
                 switch navigationAction {
                 case .push(let destination):
-                    navigationService.action.send(.push(destination, tab))
+                    navigationService.tabAction.send(.push(destination, tab))
                 case .pop:
-                    navigationService.action.send(.pop(tab))
+                    navigationService.tabAction.send(.pop(tab))
                 case .popToRoot:
-                    navigationService.action.send(.popToRoot(tab))
+                    navigationService.tabAction.send(.popToRoot(tab))
+                case .present(let destination):
+                    navigationService.sheetAction.send(.present(destination))
                 }
             }
             .store(in: &subscriptions)

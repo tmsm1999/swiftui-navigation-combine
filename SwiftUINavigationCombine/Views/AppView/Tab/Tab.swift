@@ -18,5 +18,6 @@ enum Tab {
         case push(NavigationService.Destination)
         case pop
         case popToRoot
+        case present(NavigationService.Destination)
     }
 }

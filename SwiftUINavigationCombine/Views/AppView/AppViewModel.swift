@@ -19,10 +19,11 @@ final class AppViewModel: AppViewModelRepresentable {
     @Published var state: AppViewModel.State
 
     private let navigationService: NavigationServiceRepresentable
+    private var subscribers = Set<AnyCancellable>()
 
     init(navigationService: NavigationServiceRepresentable) {
         
-        self.state = .loading
+        self.state = .init(tabsState: .loading, sheetState: .dismissed)
         self.navigationService = navigationService
 
         load()
@@ -38,7 +39,7 @@ final class AppViewModel: AppViewModelRepresentable {
             destination: .one(oneViewModel),
             navigationAction: tabOneNavigationAction
         )
-        
+
         let tabTwoNavigationAction = PassthroughSubject<Tab.NavigationAction, Never>()
         let twoViewModel = TwoViewModel.make(navigationAction: tabTwoNavigationAction)
         let tabTwoViewModel = TabPageViewModel.make(
@@ -61,23 +62,52 @@ final class AppViewModel: AppViewModelRepresentable {
             tabThreeViewModel
         ]
 
-        state = .success(tabs)
+        state.tabsState = .success(tabs)
     }
 
     private func setUpBindings() {
 
-        
+        navigationService.presentSheetAction
+            .sink { [weak self] destination in
 
-        
+                guard let self else { return }
+
+                guard let destination else {
+                    state.sheetState = .dismissed
+                    return
+                }
+                
+                let navigationAction = PassthroughSubject<Sheet.NavigationAction, Never>()
+                let sheetViewModel = SheetPageViewModel(
+                    navigationAction: navigationAction,
+                    navigationService: navigationService,
+                    destination: destination
+                )
+                
+                state.sheetState = .presented(sheetViewModel)
+            }
+            .store(in: &subscribers)
     }
 }
 
 extension AppViewModel {
 
-    enum State {
+    struct State {
 
-        case loading
-        case success([TabPageViewModel])
+        var tabsState: TabsState
+        var sheetState: SheetState
+
+        enum TabsState{
+
+            case loading
+            case success([TabPageViewModel])
+        }
+
+        enum SheetState {
+
+            case dismissed
+            case presented(SheetPageViewModel)
+        }
     }
 }
 

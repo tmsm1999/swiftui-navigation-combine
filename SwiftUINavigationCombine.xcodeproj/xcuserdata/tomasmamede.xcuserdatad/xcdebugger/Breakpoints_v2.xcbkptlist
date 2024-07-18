@@ -7,49 +7,111 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "774F0E40-266F-4676-9E96-F4DA8A9C767F"
+            uuid = "CEB32D59-2D36-4127-AAB6-F0716DC0AC4D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftUINavigationCombine/Services/NavigationService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "setUpBindings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4618501D-4416-4543-B4C0-6204B7B8330B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftUINavigationCombine/Views/AppView/AppViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "load()"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "setUpBindings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FF8880DA-C948-4410-993B-5AA4C72F5024"
+            uuid = "F7D3892A-DF02-48ED-A236-26BA8E6FC571"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftUINavigationCombine/Views/AppView/Tab/TabPageView.swift"
+            filePath = "SwiftUINavigationCombine/Views/AppView/AppViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "createView(destination:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "setUpBindings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "23EB4F70-6F61-4E4B-9F38-A4F91DADA32D"
+            uuid = "EA2F7595-7881-49A3-BB3E-1B7F71E3FA99"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftUINavigationCombine/Views/AppView/Tab/TabPageView.swift"
+            filePath = "SwiftUINavigationCombine/Views/AppView/Sheet/SheetPageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "createView(destination:)"
-            landmarkType = "7">
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "EA2F7595-7881-49A3-BB3E-1B7F71E3FA99 - 61e30b7560d5d178"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0 in SwiftUINavigationCombine.SheetPageView.body.getter : some"
+                  moduleName = "SwiftUINavigationCombine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tomasmamede/Desktop/SwiftUINavigationCombine/SwiftUINavigationCombine/Views/AppView/Sheet/SheetPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32">
+               </Location>
+               <Location
+                  uuid = "EA2F7595-7881-49A3-BB3E-1B7F71E3FA99 - 8067c1baa024d035"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftUINavigationCombine.NavigationService.Destination) -&gt; &lt;&lt;opaque return type of SwiftUINavigationCombine.SheetPageView.createView(destination: SwiftUINavigationCombine.NavigationService.Destination) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0 in SwiftUINavigationCombine.SheetPageView.body.getter : some"
+                  moduleName = "SwiftUINavigationCombine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tomasmamede/Desktop/SwiftUINavigationCombine/SwiftUINavigationCombine/Views/AppView/Sheet/SheetPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2FAE7538-ADC3-47C3-A060-210C148E9385"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftUINavigationCombine/Views/AppView/Sheet/SheetPageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
