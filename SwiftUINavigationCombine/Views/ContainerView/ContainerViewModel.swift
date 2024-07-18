@@ -14,7 +14,6 @@ protocol ContainerViewModelRepresentable: ObservableObject, Identifiable {
     var navigationAction: PassthroughSubject<Container.NavigationAction, Never> { get }
     var state: ContainerViewModel.State { get }
     var destination: NavigationService.Destination { get }
-    var sheetIsPresented: Bool { get }
 }
 
 final class ContainerViewModel: ContainerViewModelRepresentable {
@@ -28,7 +27,6 @@ final class ContainerViewModel: ContainerViewModelRepresentable {
     let destination: NavigationService.Destination
 
     @Published var state: ContainerViewModel.State = .loading
-    @Published var sheetIsPresented = false
 
     init(
         container: Container,
@@ -48,19 +46,23 @@ final class ContainerViewModel: ContainerViewModelRepresentable {
     private func setUpBindings() {
 
         navigationAction
-            .sink { [weak self] navigationAction in
+            .sink { [weak self] action in
 
                 guard let self else { return }
 
-                switch navigationAction {
-                case .push(let destination):
+                switch action {
+                case .push(let destinationID):
+                    let destination = Container.makeChildView(
+                        viewIdentifier: destinationID,
+                        navigationAction: navigationAction
+                    )
                     navigationService.action.send(.push(destination, container))
                 case .pop:
                     navigationService.action.send(.pop(container))
                 case .popToRoot:
                     navigationService.action.send(.popToRoot(container))
-                case .present(let destination):
-                    navigationService.action.send(.presentSheet(destination))
+                case .present(let destinationID):
+                    navigationService.action.send(.presentSheet(destinationID))
                 }
             }
             .store(in: &subscriptions)

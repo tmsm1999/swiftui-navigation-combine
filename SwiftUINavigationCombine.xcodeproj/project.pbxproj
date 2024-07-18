@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF94FE1B2C49B37400C1358C /* Container+ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94FE1A2C49B37400C1358C /* Container+ViewFactory.swift */; };
+		CF94FE1D2C49B76400C1358C /* AppViewModel+ContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94FE1C2C49B76400C1358C /* AppViewModel+ContainerFactory.swift */; };
 		CFB8951F2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8951E2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift */; };
 		CFB895232C47BF4500F104A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB895222C47BF4500F104A1 /* Assets.xcassets */; };
 		CFB895262C47BF4500F104A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB895252C47BF4500F104A1 /* Preview Assets.xcassets */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF94FE1A2C49B37400C1358C /* Container+ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+ViewFactory.swift"; sourceTree = "<group>"; };
+		CF94FE1C2C49B76400C1358C /* AppViewModel+ContainerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppViewModel+ContainerFactory.swift"; sourceTree = "<group>"; };
 		CFB8951B2C47BF4300F104A1 /* SwiftUINavigationCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUINavigationCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB8951E2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUINavigationCombineApp.swift; sourceTree = "<group>"; };
 		CFB895222C47BF4500F104A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			children = (
 				CFB895482C480CD100F104A1 /* AppViewModel.swift */,
 				CFB895502C4887CD00F104A1 /* AppView.swift */,
+				CF94FE1C2C49B76400C1358C /* AppViewModel+ContainerFactory.swift */,
 			);
 			path = AppView;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				CFB8954E2C4812B600F104A1 /* ContainerViewModel.swift */,
 				CFB8954B2C48127B00F104A1 /* Container.swift */,
 				CFB895522C48917E00F104A1 /* ContainerView.swift */,
+				CF94FE1A2C49B37400C1358C /* Container+ViewFactory.swift */,
 			);
 			path = ContainerView;
 			sourceTree = "<group>";
@@ -260,10 +266,12 @@
 				CFB895422C47D63900F104A1 /* ThreeView.swift in Sources */,
 				CFB8951F2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift in Sources */,
 				CFB8954C2C48127B00F104A1 /* Container.swift in Sources */,
+				CF94FE1D2C49B76400C1358C /* AppViewModel+ContainerFactory.swift in Sources */,
 				CFB8953A2C47C8A700F104A1 /* OneView.swift in Sources */,
 				CFB895442C47D81D00F104A1 /* FourViewModel.swift in Sources */,
 				CFB895332C47BF9E00F104A1 /* OneViewModel.swift in Sources */,
 				CFB8953E2C47CDCC00F104A1 /* TwoView.swift in Sources */,
+				CF94FE1B2C49B37400C1358C /* Container+ViewFactory.swift in Sources */,
 				CFB8954F2C4812B600F104A1 /* ContainerViewModel.swift in Sources */,
 				CFB895352C47C00D00F104A1 /* NavigationService.swift in Sources */,
 				CFB8953C2C47CB1300F104A1 /* TwoViewModel.swift in Sources */,

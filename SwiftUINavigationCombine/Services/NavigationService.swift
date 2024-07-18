@@ -13,7 +13,7 @@ protocol NavigationServiceRepresentable {
 
     var action: PassthroughSubject<NavigationService.TabAction, Never> { get }
     var statePublisher: Published<NavigationService.State>.Publisher { get }
-    var sheetRoot: PassthroughSubject<NavigationService.Destination.Identifier, Never> { get }
+    var showSheetAction: PassthroughSubject<NavigationService.Destination.Identifier, Never> { get }
 }
 
 typealias Paths = [Container: NavigationPath?]
@@ -21,7 +21,7 @@ typealias Paths = [Container: NavigationPath?]
 final class NavigationService: NavigationServiceRepresentable {
 
     var action = PassthroughSubject<TabAction, Never>()
-    var sheetRoot = PassthroughSubject<NavigationService.Destination.Identifier, Never>()
+    var showSheetAction = PassthroughSubject<NavigationService.Destination.Identifier, Never>()
 
     @Published private var state: NavigationService.State
     var statePublisher: Published<NavigationService.State>.Publisher { $state }
@@ -35,7 +35,7 @@ final class NavigationService: NavigationServiceRepresentable {
 
     init() {
 
-        state = .update(tabsPaths: paths)
+        state = .update(paths)
 
         setUpBindings()
     }
@@ -55,12 +55,12 @@ final class NavigationService: NavigationServiceRepresentable {
                     if numberOfElements > 0 { paths[tab]??.removeLast() }
                 case .popToRoot(let tab):
                     paths[tab] = NavigationPath()
-                case .presentSheet(let destination):
+                case .presentSheet(let destinationID):
                     paths[.sheet] = NavigationPath()
-                    sheetRoot.send(destination)
+                    showSheetAction.send(destinationID)
                 }
 
-                return .update(tabsPaths: paths)
+                return .update(paths)
             }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
@@ -71,7 +71,7 @@ extension NavigationService {
 
     enum State {
 
-        case update(tabsPaths: Paths)
+        case update(Paths)
         case error
     }
 }

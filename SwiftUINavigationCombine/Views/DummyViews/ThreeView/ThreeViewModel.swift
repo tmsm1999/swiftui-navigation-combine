@@ -42,8 +42,7 @@ final class ThreeViewModel: ThreeViewModelRepresentable {
 
                 switch action {
                 case .pushFour:
-                    let fourViewModel = FourViewModel.make(navigationAction: navigationAction)
-                    navigationAction.send(.push(.four(fourViewModel)))
+                    navigationAction.send(.push(.four))
                 case .pop:
                     navigationAction.send(.pop)
                 }

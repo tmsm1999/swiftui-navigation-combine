@@ -42,11 +42,9 @@ final class OneViewModel: OneViewModelRepresentable {
 
                 switch action {
                 case .pushTwo:
-                    let twoViewModel = TwoViewModel.make(navigationAction: navigationAction)
-                    navigationAction.send(.push(.two(twoViewModel)))
+                    navigationAction.send(.push(.two))
                 case .pushThree:
-                    let threeViewModel = ThreeViewModel.make(navigationAction: navigationAction)
-                    navigationAction.send(.push(.three(threeViewModel)))
+                    navigationAction.send(.push(.three))
                 case .presentOne:
                     navigationAction.send(.present(.one))
                 }

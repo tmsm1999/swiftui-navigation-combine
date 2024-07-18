@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Identifier = NavigationService.Destination.Identifier
+
 enum Container {
 
     case tabOne
@@ -16,9 +18,9 @@ enum Container {
 
     enum NavigationAction {
 
-        case push(NavigationService.Destination)
+        case push(Identifier)
         case pop
         case popToRoot
-        case present(NavigationService.Destination.Identifier)
+        case present(Identifier)
     }
 }

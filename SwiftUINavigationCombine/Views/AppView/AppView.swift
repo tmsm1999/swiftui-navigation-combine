@@ -17,9 +17,9 @@ struct AppView<ViewModel: AppViewModelRepresentable>: View {
 
     var body: some View {
 
-        switch viewModel.state.tabsState {
-        case .loading:
-            Text("Loading")
+        switch viewModel.appState.tabsState {
+        case .initial:
+            Text("Initial State")
         case .success(let tabsViewModels):
             Group {
                 TabView {
@@ -31,7 +31,7 @@ struct AppView<ViewModel: AppViewModelRepresentable>: View {
                     }
                 }
                 .sheet(isPresented: $viewModel.sheetIsPresented) {
-                    if case .success(let sheetViewModel) = viewModel.state.sheetState {
+                    if case .presenting(let sheetViewModel) = viewModel.appState.sheetState {
                         ContainerView(viewModel: sheetViewModel)
                     }
                 }

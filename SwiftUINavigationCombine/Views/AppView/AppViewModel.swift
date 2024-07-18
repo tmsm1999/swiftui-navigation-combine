@@ -11,13 +11,16 @@ import SwiftUI
 
 protocol AppViewModelRepresentable: ObservableObject {
 
-    var state: AppViewModel.State { get }
+    var appState: AppViewModel.AppState { get }
+    
     var sheetIsPresented: Bool { get set }
+
+    func dismissSheet() -> Void
 }
 
 final class AppViewModel: AppViewModelRepresentable {
 
-    @Published var state: AppViewModel.State
+    @Published var appState = AppViewModel.AppState()
     @Published var sheetIsPresented: Bool = false
 
     private var subscribers = Set<AnyCancellable>()
@@ -25,8 +28,7 @@ final class AppViewModel: AppViewModelRepresentable {
     private let navigationService: NavigationServiceRepresentable
 
     init(navigationService: NavigationServiceRepresentable) {
-        
-        self.state = .init(tabsState: .loading, sheetState: .loading)
+
         self.navigationService = navigationService
 
         load()
@@ -36,86 +38,51 @@ final class AppViewModel: AppViewModelRepresentable {
     private func load() {
 
         let tabs = [
-            makeContainerRootDestination(container: .tabOne, identifier: .one),
-            makeContainerRootDestination(container: .tabTwo, identifier: .two),
-            makeContainerRootDestination(container: .tabThree, identifier: .three)
+            AppViewModel.makeContainerViewModel(container: .tabOne, identifier: .one),
+            AppViewModel.makeContainerViewModel(container: .tabTwo, identifier: .two),
+            AppViewModel.makeContainerViewModel(container: .tabThree, identifier: .three)
         ]
 
-        state.tabsState = .success(tabs)
+        appState.tabsState = .success(tabs)
     }
 
     private func setUpBindings() {
 
-        navigationService.sheetRoot
+        navigationService.showSheetAction
             .sink { [weak self] identifier in
 
                 guard let self else { return }
 
-                let sheetViewModel = makeContainerRootDestination(container: .sheet, identifier: identifier)
+                let sheetViewModel = AppViewModel.makeContainerViewModel(container: .sheet, identifier: identifier)
+                appState.sheetState = .presenting(sheetViewModel)
 
-                state.sheetState = .success(sheetViewModel)
                 sheetIsPresented = true
             }
             .store(in: &subscribers)
     }
 
-
-    private func makeContainerRootDestination(
-        container: Container,
-        identifier: NavigationService.Destination.Identifier
-    ) -> ContainerViewModel {
-
-        let navigationAction = PassthroughSubject<Container.NavigationAction, Never>()
-
-        switch identifier {
-        case .one:
-            let oneViewModel = OneViewModel.make(navigationAction: navigationAction)
-            return ContainerViewModel.make(
-                container: container,
-                destination: .one(oneViewModel),
-                navigationAction: navigationAction
-            )
-        case .two:
-            let twoViewModel = TwoViewModel.make(navigationAction: navigationAction)
-            return ContainerViewModel.make(
-                container: container,
-                destination: .two(twoViewModel),
-                navigationAction: navigationAction
-            )
-        case .three:
-            let threeViewModel = ThreeViewModel.make(navigationAction: navigationAction)
-            return ContainerViewModel.make(
-                container: container,
-                destination: .three(threeViewModel),
-                navigationAction: navigationAction
-            )
-        case .four:
-            let fourViewModel = FourViewModel.make(navigationAction: navigationAction)
-            return ContainerViewModel.make(
-                container: container,
-                destination: .four(fourViewModel),
-                navigationAction: navigationAction
-            )
-        }
-
+    func dismissSheet() {
+        appState.sheetState = .dismissed
     }
 }
 
 extension AppViewModel {
 
-    struct State {
+    class AppState {
 
-        var tabsState: Tabs
-        var sheetState: Sheet
+        var tabsState: TabState = .initial
+        var sheetState: SheetState = .dismissed
 
-        enum Tabs {
-            case loading
+        enum TabState {
+
+            case initial
             case success([ContainerViewModel])
         }
 
-        enum Sheet {
-            case loading
-            case success(ContainerViewModel)
+        enum SheetState {
+
+            case dismissed
+            case presenting(ContainerViewModel)
         }
     }
 }
