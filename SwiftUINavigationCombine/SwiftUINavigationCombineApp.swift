@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUINavigationCombineApp: App {
+
+    let appViewModel = AppViewModel(navigationService: ServiceLocator.shared.navigationService)
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView(viewModel: appViewModel)
         }
     }
 }

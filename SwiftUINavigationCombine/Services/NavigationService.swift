@@ -16,7 +16,7 @@ protocol NavigationServiceRepresentable {
     var sheetRoot: PassthroughSubject<NavigationService.Destination.Identifier, Never> { get }
 }
 
-typealias Paths = [Coordinator: NavigationPath?]
+typealias Paths = [Container: NavigationPath?]
 
 final class NavigationService: NavigationServiceRepresentable {
 
@@ -80,9 +80,9 @@ extension NavigationService {
 
     enum TabAction {
 
-        case push(Destination, Coordinator)
-        case pop(Coordinator)
-        case popToRoot(Coordinator)
+        case push(Destination, Container)
+        case pop(Container)
+        case popToRoot(Container)
         case presentSheet(Destination.Identifier)
     }
 }

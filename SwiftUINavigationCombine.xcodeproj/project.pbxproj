@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CFB8951F2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8951E2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift */; };
-		CFB895212C47BF4300F104A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895202C47BF4300F104A1 /* ContentView.swift */; };
 		CFB895232C47BF4500F104A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB895222C47BF4500F104A1 /* Assets.xcassets */; };
 		CFB895262C47BF4500F104A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB895252C47BF4500F104A1 /* Preview Assets.xcassets */; };
 		CFB895332C47BF9E00F104A1 /* OneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895322C47BF9E00F104A1 /* OneViewModel.swift */; };
@@ -22,16 +21,15 @@
 		CFB895442C47D81D00F104A1 /* FourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895432C47D81D00F104A1 /* FourViewModel.swift */; };
 		CFB895462C47DF6900F104A1 /* FourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895452C47DF6900F104A1 /* FourView.swift */; };
 		CFB895492C480CD100F104A1 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895482C480CD100F104A1 /* AppViewModel.swift */; };
-		CFB8954C2C48127B00F104A1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8954B2C48127B00F104A1 /* Coordinator.swift */; };
-		CFB8954F2C4812B600F104A1 /* TabPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8954E2C4812B600F104A1 /* TabPageViewModel.swift */; };
+		CFB8954C2C48127B00F104A1 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8954B2C48127B00F104A1 /* Container.swift */; };
+		CFB8954F2C4812B600F104A1 /* ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8954E2C4812B600F104A1 /* ContainerViewModel.swift */; };
 		CFB895512C4887CD00F104A1 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895502C4887CD00F104A1 /* AppView.swift */; };
-		CFB895532C48917E00F104A1 /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895522C48917E00F104A1 /* TabPageView.swift */; };
+		CFB895532C48917E00F104A1 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB895522C48917E00F104A1 /* ContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CFB8951B2C47BF4300F104A1 /* SwiftUINavigationCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUINavigationCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB8951E2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUINavigationCombineApp.swift; sourceTree = "<group>"; };
-		CFB895202C47BF4300F104A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CFB895222C47BF4500F104A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFB895252C47BF4500F104A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CFB895322C47BF9E00F104A1 /* OneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneViewModel.swift; sourceTree = "<group>"; };
@@ -45,10 +43,10 @@
 		CFB895432C47D81D00F104A1 /* FourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourViewModel.swift; sourceTree = "<group>"; };
 		CFB895452C47DF6900F104A1 /* FourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourView.swift; sourceTree = "<group>"; };
 		CFB895482C480CD100F104A1 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
-		CFB8954B2C48127B00F104A1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		CFB8954E2C4812B600F104A1 /* TabPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPageViewModel.swift; sourceTree = "<group>"; };
+		CFB8954B2C48127B00F104A1 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		CFB8954E2C4812B600F104A1 /* ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewModel.swift; sourceTree = "<group>"; };
 		CFB895502C4887CD00F104A1 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		CFB895522C48917E00F104A1 /* TabPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPageView.swift; sourceTree = "<group>"; };
+		CFB895522C48917E00F104A1 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +60,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF94FE192C49AE1E00C1358C /* DummyViews */ = {
+			isa = PBXGroup;
+			children = (
+				CFB895302C47BF7B00F104A1 /* FourView */,
+				CFB8952D2C47BF6B00F104A1 /* OneView */,
+				CFB8952F2C47BF7500F104A1 /* ThreeView */,
+				CFB8952E2C47BF7000F104A1 /* TwoView */,
+			);
+			path = DummyViews;
+			sourceTree = "<group>";
+		};
 		CFB895122C47BF4300F104A1 = {
 			isa = PBXGroup;
 			children = (
@@ -81,12 +90,11 @@
 		CFB8951D2C47BF4300F104A1 /* SwiftUINavigationCombine */ = {
 			isa = PBXGroup;
 			children = (
-				CFB895362C47C6B600F104A1 /* Services */,
-				CFB8952C2C47BF5C00F104A1 /* Views */,
-				CFB8951E2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift */,
-				CFB895202C47BF4300F104A1 /* ContentView.swift */,
 				CFB895222C47BF4500F104A1 /* Assets.xcassets */,
 				CFB895242C47BF4500F104A1 /* Preview Content */,
+				CFB895362C47C6B600F104A1 /* Services */,
+				CFB8951E2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift */,
+				CFB8952C2C47BF5C00F104A1 /* Views */,
 			);
 			path = SwiftUINavigationCombine;
 			sourceTree = "<group>";
@@ -103,48 +111,46 @@
 			isa = PBXGroup;
 			children = (
 				CFB895472C480C0F00F104A1 /* AppView */,
-				CFB895302C47BF7B00F104A1 /* Four */,
-				CFB8952F2C47BF7500F104A1 /* Three */,
-				CFB8952E2C47BF7000F104A1 /* Two */,
-				CFB8952D2C47BF6B00F104A1 /* One */,
+				CFB8954A2C48123400F104A1 /* ContainerView */,
+				CF94FE192C49AE1E00C1358C /* DummyViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		CFB8952D2C47BF6B00F104A1 /* One */ = {
+		CFB8952D2C47BF6B00F104A1 /* OneView */ = {
 			isa = PBXGroup;
 			children = (
 				CFB895322C47BF9E00F104A1 /* OneViewModel.swift */,
 				CFB895392C47C8A700F104A1 /* OneView.swift */,
 			);
-			path = One;
+			path = OneView;
 			sourceTree = "<group>";
 		};
-		CFB8952E2C47BF7000F104A1 /* Two */ = {
+		CFB8952E2C47BF7000F104A1 /* TwoView */ = {
 			isa = PBXGroup;
 			children = (
 				CFB8953B2C47CB1300F104A1 /* TwoViewModel.swift */,
 				CFB8953D2C47CDCC00F104A1 /* TwoView.swift */,
 			);
-			path = Two;
+			path = TwoView;
 			sourceTree = "<group>";
 		};
-		CFB8952F2C47BF7500F104A1 /* Three */ = {
+		CFB8952F2C47BF7500F104A1 /* ThreeView */ = {
 			isa = PBXGroup;
 			children = (
 				CFB8953F2C47CFC800F104A1 /* ThreeViewModel.swift */,
 				CFB895412C47D63900F104A1 /* ThreeView.swift */,
 			);
-			path = Three;
+			path = ThreeView;
 			sourceTree = "<group>";
 		};
-		CFB895302C47BF7B00F104A1 /* Four */ = {
+		CFB895302C47BF7B00F104A1 /* FourView */ = {
 			isa = PBXGroup;
 			children = (
 				CFB895432C47D81D00F104A1 /* FourViewModel.swift */,
 				CFB895452C47DF6900F104A1 /* FourView.swift */,
 			);
-			path = Four;
+			path = FourView;
 			sourceTree = "<group>";
 		};
 		CFB895362C47C6B600F104A1 /* Services */ = {
@@ -159,21 +165,20 @@
 		CFB895472C480C0F00F104A1 /* AppView */ = {
 			isa = PBXGroup;
 			children = (
-				CFB8954A2C48123400F104A1 /* Tab */,
 				CFB895482C480CD100F104A1 /* AppViewModel.swift */,
 				CFB895502C4887CD00F104A1 /* AppView.swift */,
 			);
 			path = AppView;
 			sourceTree = "<group>";
 		};
-		CFB8954A2C48123400F104A1 /* Tab */ = {
+		CFB8954A2C48123400F104A1 /* ContainerView */ = {
 			isa = PBXGroup;
 			children = (
-				CFB8954E2C4812B600F104A1 /* TabPageViewModel.swift */,
-				CFB8954B2C48127B00F104A1 /* Coordinator.swift */,
-				CFB895522C48917E00F104A1 /* TabPageView.swift */,
+				CFB8954E2C4812B600F104A1 /* ContainerViewModel.swift */,
+				CFB8954B2C48127B00F104A1 /* Container.swift */,
+				CFB895522C48917E00F104A1 /* ContainerView.swift */,
 			);
-			path = Tab;
+			path = ContainerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,21 +251,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB895532C48917E00F104A1 /* TabPageView.swift in Sources */,
+				CFB895532C48917E00F104A1 /* ContainerView.swift in Sources */,
 				CFB895462C47DF6900F104A1 /* FourView.swift in Sources */,
 				CFB895402C47CFC800F104A1 /* ThreeViewModel.swift in Sources */,
-				CFB895212C47BF4300F104A1 /* ContentView.swift in Sources */,
 				CFB895492C480CD100F104A1 /* AppViewModel.swift in Sources */,
 				CFB895512C4887CD00F104A1 /* AppView.swift in Sources */,
 				CFB895382C47C6CD00F104A1 /* ServiceLocator.swift in Sources */,
 				CFB895422C47D63900F104A1 /* ThreeView.swift in Sources */,
 				CFB8951F2C47BF4300F104A1 /* SwiftUINavigationCombineApp.swift in Sources */,
-				CFB8954C2C48127B00F104A1 /* Coordinator.swift in Sources */,
+				CFB8954C2C48127B00F104A1 /* Container.swift in Sources */,
 				CFB8953A2C47C8A700F104A1 /* OneView.swift in Sources */,
 				CFB895442C47D81D00F104A1 /* FourViewModel.swift in Sources */,
 				CFB895332C47BF9E00F104A1 /* OneViewModel.swift in Sources */,
 				CFB8953E2C47CDCC00F104A1 /* TwoView.swift in Sources */,
-				CFB8954F2C4812B600F104A1 /* TabPageViewModel.swift in Sources */,
+				CFB8954F2C4812B600F104A1 /* ContainerViewModel.swift in Sources */,
 				CFB895352C47C00D00F104A1 /* NavigationService.swift in Sources */,
 				CFB8953C2C47CB1300F104A1 /* TwoViewModel.swift in Sources */,
 			);

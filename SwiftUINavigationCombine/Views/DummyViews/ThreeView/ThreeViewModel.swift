@@ -19,10 +19,10 @@ final class ThreeViewModel: ThreeViewModelRepresentable {
     private var subscriptions = Set<AnyCancellable>()
 
     private let navigationService: NavigationServiceRepresentable
-    private var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
+    private var navigationAction: PassthroughSubject<Container.NavigationAction, Never>
 
     init(
-        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>,
+        navigationAction: PassthroughSubject<Container.NavigationAction, Never>,
         navigationService: NavigationServiceRepresentable
     ) {
         
@@ -63,7 +63,7 @@ extension ThreeViewModel {
 
 extension ThreeViewModel {
 
-    static func make(navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>) -> ThreeViewModel {
+    static func make(navigationAction: PassthroughSubject<Container.NavigationAction, Never>) -> ThreeViewModel {
 
         .init(navigationAction: navigationAction, navigationService: ServiceLocator.shared.navigationService)
     }

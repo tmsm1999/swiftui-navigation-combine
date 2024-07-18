@@ -36,9 +36,9 @@ final class AppViewModel: AppViewModelRepresentable {
     private func load() {
 
         let tabs = [
-            makeCoordinatorRootDestination(coordinator: .tabOne, identifier: .one),
-            makeCoordinatorRootDestination(coordinator: .tabTwo, identifier: .two),
-            makeCoordinatorRootDestination(coordinator: .tabThree, identifier: .three)
+            makeContainerRootDestination(container: .tabOne, identifier: .one),
+            makeContainerRootDestination(container: .tabTwo, identifier: .two),
+            makeContainerRootDestination(container: .tabThree, identifier: .three)
         ]
 
         state.tabsState = .success(tabs)
@@ -51,7 +51,7 @@ final class AppViewModel: AppViewModelRepresentable {
 
                 guard let self else { return }
 
-                let sheetViewModel = makeCoordinatorRootDestination(coordinator: .sheet, identifier: identifier)
+                let sheetViewModel = makeContainerRootDestination(container: .sheet, identifier: identifier)
 
                 state.sheetState = .success(sheetViewModel)
                 sheetIsPresented = true
@@ -60,39 +60,39 @@ final class AppViewModel: AppViewModelRepresentable {
     }
 
 
-    private func makeCoordinatorRootDestination(
-        coordinator: Coordinator,
+    private func makeContainerRootDestination(
+        container: Container,
         identifier: NavigationService.Destination.Identifier
-    ) -> TabPageViewModel {
+    ) -> ContainerViewModel {
 
-        let navigationAction = PassthroughSubject<Coordinator.NavigationAction, Never>()
+        let navigationAction = PassthroughSubject<Container.NavigationAction, Never>()
 
         switch identifier {
         case .one:
             let oneViewModel = OneViewModel.make(navigationAction: navigationAction)
-            return TabPageViewModel.make(
-                tab: coordinator,
+            return ContainerViewModel.make(
+                container: container,
                 destination: .one(oneViewModel),
                 navigationAction: navigationAction
             )
         case .two:
             let twoViewModel = TwoViewModel.make(navigationAction: navigationAction)
-            return TabPageViewModel.make(
-                tab: coordinator,
+            return ContainerViewModel.make(
+                container: container,
                 destination: .two(twoViewModel),
                 navigationAction: navigationAction
             )
         case .three:
             let threeViewModel = ThreeViewModel.make(navigationAction: navigationAction)
-            return TabPageViewModel.make(
-                tab: coordinator,
+            return ContainerViewModel.make(
+                container: container,
                 destination: .three(threeViewModel),
                 navigationAction: navigationAction
             )
         case .four:
             let fourViewModel = FourViewModel.make(navigationAction: navigationAction)
-            return TabPageViewModel.make(
-                tab: coordinator,
+            return ContainerViewModel.make(
+                container: container,
                 destination: .four(fourViewModel),
                 navigationAction: navigationAction
             )
@@ -110,12 +110,12 @@ extension AppViewModel {
 
         enum Tabs {
             case loading
-            case success([TabPageViewModel])
+            case success([ContainerViewModel])
         }
 
         enum Sheet {
             case loading
-            case success(TabPageViewModel)
+            case success(ContainerViewModel)
         }
     }
 }

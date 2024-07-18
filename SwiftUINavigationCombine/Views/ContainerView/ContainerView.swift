@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct TabPageView<ViewModel: TabPageViewModelRepresentable>: View {
+struct ContainerView<ViewModel: ContainerViewModelRepresentable>: View {
 
     @ObservedObject var viewModel: ViewModel
 
-    @State private var tabPath = NavigationPath()
-    @State private var state: TabPageViewModel.State
+    @State private var state: ContainerViewModel.State
 
     init(viewModel: ViewModel) {
 
@@ -26,20 +25,12 @@ struct TabPageView<ViewModel: TabPageViewModelRepresentable>: View {
             Text("Error")
         case .loading:
             Text("Loading")
-        case .success:
-            NavigationStack(path: $tabPath) {
+        case .success(let path):
+            NavigationStack(path: Binding(get: { path }, set: { _ in })) {
                 createView(destination: viewModel.destination)
                     .navigationDestination(for: NavigationService.Destination.self) { destination in
                         createView(destination: destination)
                     }
-            }
-            .onChange(of: viewModel.state) { _, newState in
-                switch newState {
-                case .success(let newPath):
-                    self.tabPath = newPath
-                case .loading, .error:
-                    break
-                }
             }
         }
     }

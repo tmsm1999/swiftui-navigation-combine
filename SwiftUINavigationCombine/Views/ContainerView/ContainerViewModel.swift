@@ -9,36 +9,36 @@ import Foundation
 import Combine
 import SwiftUI
 
-protocol TabPageViewModelRepresentable: ObservableObject, Identifiable {
+protocol ContainerViewModelRepresentable: ObservableObject, Identifiable {
 
-    var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never> { get }
-    var state: TabPageViewModel.State { get }
+    var navigationAction: PassthroughSubject<Container.NavigationAction, Never> { get }
+    var state: ContainerViewModel.State { get }
     var destination: NavigationService.Destination { get }
     var sheetIsPresented: Bool { get }
 }
 
-final class TabPageViewModel: TabPageViewModelRepresentable {
+final class ContainerViewModel: ContainerViewModelRepresentable {
 
-    let navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
+    let navigationAction: PassthroughSubject<Container.NavigationAction, Never>
     private var subscriptions = Set<AnyCancellable>()
     
-    private let tab: Coordinator
+    private let container: Container
     private let navigationService: NavigationServiceRepresentable
 
     let destination: NavigationService.Destination
 
-    @Published var state: TabPageViewModel.State = .loading
+    @Published var state: ContainerViewModel.State = .loading
     @Published var sheetIsPresented = false
 
     init(
-        tab: Coordinator,
-        tabNavigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>,
+        container: Container,
+        navigationAction: PassthroughSubject<Container.NavigationAction, Never>,
         destination: NavigationService.Destination,
         navigationService: NavigationServiceRepresentable
     ) {
 
-        self.tab = tab
-        self.navigationAction = tabNavigationAction
+        self.container = container
+        self.navigationAction = navigationAction
         self.destination = destination
         self.navigationService = navigationService
 
@@ -54,11 +54,11 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
 
                 switch navigationAction {
                 case .push(let destination):
-                    navigationService.action.send(.push(destination, tab))
+                    navigationService.action.send(.push(destination, container))
                 case .pop:
-                    navigationService.action.send(.pop(tab))
+                    navigationService.action.send(.pop(container))
                 case .popToRoot:
-                    navigationService.action.send(.popToRoot(tab))
+                    navigationService.action.send(.popToRoot(container))
                 case .present(let destination):
                     navigationService.action.send(.presentSheet(destination))
                 }
@@ -73,7 +73,7 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
                 switch state {
                 case .update(let paths):
                     guard
-                        let lookupUnwrap = paths[tab],
+                        let lookupUnwrap = paths[container],
                         let navigationPath = lookupUnwrap
                     else { return .error }
 
@@ -88,7 +88,7 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
     }
 }
 
-extension TabPageViewModel {
+extension ContainerViewModel {
 
     enum State: Equatable {
 
@@ -98,17 +98,17 @@ extension TabPageViewModel {
     }
 }
 
-extension TabPageViewModel {
+extension ContainerViewModel {
 
     static func make(
-        tab: Coordinator,
+        container: Container,
         destination: NavigationService.Destination,
-        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
-    ) -> TabPageViewModel {
+        navigationAction: PassthroughSubject<Container.NavigationAction, Never>
+    ) -> ContainerViewModel {
 
         .init(
-            tab: tab,
-            tabNavigationAction: navigationAction,
+            container: container,
+            navigationAction: navigationAction,
             destination: destination,
             navigationService: ServiceLocator.shared.navigationService
         )

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Coordinator {
+enum Container {
 
     case tabOne
     case tabTwo

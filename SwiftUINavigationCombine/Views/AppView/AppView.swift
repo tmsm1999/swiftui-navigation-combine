@@ -24,7 +24,7 @@ struct AppView<ViewModel: AppViewModelRepresentable>: View {
             Group {
                 TabView {
                     ForEach(tabsViewModels) { tabViewModel in
-                        TabPageView(viewModel: tabViewModel)
+                        ContainerView(viewModel: tabViewModel)
                             .tabItem {
                                 Label("Menu", systemImage: "list.dash")
                             }
@@ -32,7 +32,7 @@ struct AppView<ViewModel: AppViewModelRepresentable>: View {
                 }
                 .sheet(isPresented: $viewModel.sheetIsPresented) {
                     if case .success(let sheetViewModel) = viewModel.state.sheetState {
-                        TabPageView(viewModel: sheetViewModel)
+                        ContainerView(viewModel: sheetViewModel)
                     }
                 }
             }

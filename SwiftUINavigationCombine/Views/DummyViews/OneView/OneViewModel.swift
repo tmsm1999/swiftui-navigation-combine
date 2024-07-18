@@ -19,11 +19,11 @@ final class OneViewModel: OneViewModelRepresentable {
     private var subscriptions = Set<AnyCancellable>()
 
     private let navigationService: NavigationServiceRepresentable
-    private var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
+    private var navigationAction: PassthroughSubject<Container.NavigationAction, Never>
 
     init(
         navigationService: NavigationServiceRepresentable,
-        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
+        navigationAction: PassthroughSubject<Container.NavigationAction, Never>
     ) {
 
         self.navigationService = navigationService
@@ -67,7 +67,7 @@ extension OneViewModel {
 
 extension OneViewModel {
 
-    static func make(navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>) -> OneViewModel {
+    static func make(navigationAction: PassthroughSubject<Container.NavigationAction, Never>) -> OneViewModel {
 
         .init(navigationService: ServiceLocator.shared.navigationService, navigationAction: navigationAction)
     }
