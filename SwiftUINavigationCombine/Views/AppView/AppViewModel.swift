@@ -51,8 +51,6 @@ final class AppViewModel: AppViewModelRepresentable {
 
                 guard let self else { return }
 
-                let sheetNavigationAction = PassthroughSubject<Coordinator.NavigationAction, Never>()
-
                 let sheetViewModel = makeCoordinatorRootDestination(coordinator: .sheet, identifier: identifier)
 
                 state.sheetState = .success(sheetViewModel)
