@@ -11,26 +11,28 @@ import SwiftUI
 
 protocol TabPageViewModelRepresentable: ObservableObject, Identifiable {
 
-    var navigationAction: PassthroughSubject<Tab.NavigationAction, Never> { get }
+    var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never> { get }
     var state: TabPageViewModel.State { get }
     var destination: NavigationService.Destination { get }
+    var sheetIsPresented: Bool { get }
 }
 
 final class TabPageViewModel: TabPageViewModelRepresentable {
 
-    let navigationAction: PassthroughSubject<Tab.NavigationAction, Never>
+    let navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
     private var subscriptions = Set<AnyCancellable>()
     
-    private let tab: Tab
+    private let tab: Coordinator
     private let navigationService: NavigationServiceRepresentable
 
     let destination: NavigationService.Destination
 
     @Published var state: TabPageViewModel.State = .loading
+    @Published var sheetIsPresented = false
 
     init(
-        tab: Tab,
-        tabNavigationAction: PassthroughSubject<Tab.NavigationAction, Never>,
+        tab: Coordinator,
+        tabNavigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>,
         destination: NavigationService.Destination,
         navigationService: NavigationServiceRepresentable
     ) {
@@ -57,6 +59,8 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
                     navigationService.action.send(.pop(tab))
                 case .popToRoot:
                     navigationService.action.send(.popToRoot(tab))
+                case .present(let destination):
+                    navigationService.action.send(.presentSheet(destination))
                 }
             }
             .store(in: &subscriptions)
@@ -67,8 +71,12 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
                 guard let self else { return .error }
 
                 switch state {
-                case .update(let paths, _):
-                    guard let navigationPath = paths[tab] else { return .error }
+                case .update(let paths):
+                    guard
+                        let lookupUnwrap = paths[tab],
+                        let navigationPath = lookupUnwrap
+                    else { return .error }
+
                     return .success(navigationPath)
                 case .error:
                     return .error
@@ -76,6 +84,7 @@ final class TabPageViewModel: TabPageViewModelRepresentable {
             }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
+
     }
 }
 
@@ -92,9 +101,9 @@ extension TabPageViewModel {
 extension TabPageViewModel {
 
     static func make(
-        tab: Tab,
+        tab: Coordinator,
         destination: NavigationService.Destination,
-        navigationAction: PassthroughSubject<Tab.NavigationAction, Never>
+        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
     ) -> TabPageViewModel {
 
         .init(

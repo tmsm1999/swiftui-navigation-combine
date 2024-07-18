@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppView<ViewModel: AppViewModelRepresentable>: View {
 
-    private let viewModel: ViewModel
+    @ObservedObject var viewModel: ViewModel
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -17,16 +17,23 @@ struct AppView<ViewModel: AppViewModelRepresentable>: View {
 
     var body: some View {
 
-        switch viewModel.state {
+        switch viewModel.state.tabsState {
         case .loading:
             Text("Loading")
         case .success(let tabsViewModels):
-            TabView {
-                ForEach(tabsViewModels) { tabViewModel in
-                    TabPageView(viewModel: tabViewModel)
-                        .tabItem {
-                            Label("Menu", systemImage: "list.dash")
-                        }
+            Group {
+                TabView {
+                    ForEach(tabsViewModels) { tabViewModel in
+                        TabPageView(viewModel: tabViewModel)
+                            .tabItem {
+                                Label("Menu", systemImage: "list.dash")
+                            }
+                    }
+                }
+                .sheet(isPresented: $viewModel.sheetIsPresented) {
+                    if case .success(let sheetViewModel) = viewModel.state.sheetState {
+                        TabPageView(viewModel: sheetViewModel)
+                    }
                 }
             }
         }

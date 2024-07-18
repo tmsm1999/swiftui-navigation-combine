@@ -19,10 +19,10 @@ final class TwoViewModel: TwoViewModelRepresentable {
     private var subscriptions = Set<AnyCancellable>()
 
     private let navigationService: NavigationServiceRepresentable
-    private var navigationAction: PassthroughSubject<Tab.NavigationAction, Never>
+    private var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
 
     init(
-        navigationAction: PassthroughSubject<Tab.NavigationAction, Never>,
+        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>,
         navigationService: NavigationServiceRepresentable
     ) {
         
@@ -67,7 +67,7 @@ extension TwoViewModel {
 
 extension TwoViewModel {
 
-    static func make(navigationAction: PassthroughSubject<Tab.NavigationAction, Never>) -> TwoViewModel {
+    static func make(navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>) -> TwoViewModel {
 
         .init(navigationAction: navigationAction, navigationService: ServiceLocator.shared.navigationService)
     }

@@ -13,13 +13,15 @@ protocol NavigationServiceRepresentable {
 
     var action: PassthroughSubject<NavigationService.TabAction, Never> { get }
     var statePublisher: Published<NavigationService.State>.Publisher { get }
+    var sheetRoot: PassthroughSubject<NavigationService.Destination.Identifier, Never> { get }
 }
 
-typealias Paths = [Tab: NavigationPath]
+typealias Paths = [Coordinator: NavigationPath?]
 
 final class NavigationService: NavigationServiceRepresentable {
 
     var action = PassthroughSubject<TabAction, Never>()
+    var sheetRoot = PassthroughSubject<NavigationService.Destination.Identifier, Never>()
 
     @Published private var state: NavigationService.State
     var statePublisher: Published<NavigationService.State>.Publisher { $state }
@@ -27,14 +29,13 @@ final class NavigationService: NavigationServiceRepresentable {
     private var paths: Paths = [
         .tabOne: NavigationPath(),
         .tabTwo: NavigationPath(),
-        .tabThree: NavigationPath()
+        .tabThree: NavigationPath(),
+        .sheet: nil
     ]
-
-    private var sheetPath = NavigationPath()
 
     init() {
 
-        state = .update(tabsPaths: paths, sheetPath: sheetPath)
+        state = .update(tabsPaths: paths)
 
         setUpBindings()
     }
@@ -48,15 +49,18 @@ final class NavigationService: NavigationServiceRepresentable {
 
                 switch action {
                 case .push(let destination, let tab):
-                    paths[tab]?.append(destination)
+                    paths[tab]??.append(destination)
                 case .pop(let tab):
-                    guard let path = paths[tab] else { return .error }
-                    if !path.isEmpty { paths[tab]?.removeLast() }
+                    guard let numberOfElements = paths[tab]??.count else { return .error }
+                    if numberOfElements > 0 { paths[tab]??.removeLast() }
                 case .popToRoot(let tab):
                     paths[tab] = NavigationPath()
+                case .presentSheet(let destination):
+                    paths[.sheet] = NavigationPath()
+                    sheetRoot.send(destination)
                 }
 
-                return .update(tabsPaths: paths, sheetPath: sheetPath)
+                return .update(tabsPaths: paths)
             }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
@@ -67,7 +71,7 @@ extension NavigationService {
 
     enum State {
 
-        case update(tabsPaths: Paths, sheetPath: NavigationPath)
+        case update(tabsPaths: Paths)
         case error
     }
 }
@@ -76,9 +80,10 @@ extension NavigationService {
 
     enum TabAction {
 
-        case push(Destination, Tab)
-        case pop(Tab)
-        case popToRoot(Tab)
+        case push(Destination, Coordinator)
+        case pop(Coordinator)
+        case popToRoot(Coordinator)
+        case presentSheet(Destination.Identifier)
     }
 }
 

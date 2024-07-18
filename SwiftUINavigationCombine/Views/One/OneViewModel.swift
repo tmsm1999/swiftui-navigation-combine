@@ -19,11 +19,11 @@ final class OneViewModel: OneViewModelRepresentable {
     private var subscriptions = Set<AnyCancellable>()
 
     private let navigationService: NavigationServiceRepresentable
-    private var navigationAction: PassthroughSubject<Tab.NavigationAction, Never>
+    private var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
 
     init(
         navigationService: NavigationServiceRepresentable,
-        navigationAction: PassthroughSubject<Tab.NavigationAction, Never>
+        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
     ) {
 
         self.navigationService = navigationService
@@ -47,6 +47,8 @@ final class OneViewModel: OneViewModelRepresentable {
                 case .pushThree:
                     let threeViewModel = ThreeViewModel.make(navigationAction: navigationAction)
                     navigationAction.send(.push(.three(threeViewModel)))
+                case .presentOne:
+                    navigationAction.send(.present(.one))
                 }
             }
             .store(in: &subscriptions)
@@ -59,12 +61,13 @@ extension OneViewModel {
 
         case pushTwo
         case pushThree
+        case presentOne
     }
 }
 
 extension OneViewModel {
 
-    static func make(navigationAction: PassthroughSubject<Tab.NavigationAction, Never>) -> OneViewModel {
+    static func make(navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>) -> OneViewModel {
 
         .init(navigationService: ServiceLocator.shared.navigationService, navigationAction: navigationAction)
     }

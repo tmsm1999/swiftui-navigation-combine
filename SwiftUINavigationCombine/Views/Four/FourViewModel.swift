@@ -19,10 +19,10 @@ final class FourViewModel: FourViewModelRepresentable {
     private var subscriptions = Set<AnyCancellable>()
 
     private let navigationService: NavigationServiceRepresentable
-    private var navigationAction: PassthroughSubject<Tab.NavigationAction, Never>
+    private var navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>
 
     init(
-        navigationAction: PassthroughSubject<Tab.NavigationAction, Never>,
+        navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>,
         navigationService: NavigationServiceRepresentable
     ) {
         
@@ -59,7 +59,7 @@ extension FourViewModel {
 
 extension FourViewModel {
 
-    static func make(navigationAction: PassthroughSubject<Tab.NavigationAction, Never>) -> FourViewModel {
+    static func make(navigationAction: PassthroughSubject<Coordinator.NavigationAction, Never>) -> FourViewModel {
 
         .init(navigationAction: navigationAction, navigationService: ServiceLocator.shared.navigationService)
     }
