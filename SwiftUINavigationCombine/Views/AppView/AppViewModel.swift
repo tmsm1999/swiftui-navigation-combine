@@ -49,19 +49,20 @@ final class AppViewModel: AppViewModelRepresentable {
     private func setUpBindings() {
 
         navigationService.showSheetAction
-            .sink { [weak self] identifier in
+            .map { [weak self] identifier in
 
-                guard let self else { return }
+                guard let self else { return false }
 
                 let sheetViewModel = AppViewModel.makeContainerViewModel(container: .sheet, identifier: identifier)
                 appState.sheetState = .presenting(sheetViewModel)
 
-                sheetIsPresented = true
+                return true
             }
-            .store(in: &subscribers)
+            .assign(to: &$sheetIsPresented)
     }
 
     func dismissSheet() {
+        
         appState.sheetState = .dismissed
     }
 }
