@@ -67,6 +67,9 @@ extension OneViewModel {
 
     static func make(navigationAction: PassthroughSubject<Container.NavigationAction, Never>) -> OneViewModel {
 
-        .init(navigationService: ServiceLocator.shared.navigationService, navigationAction: navigationAction)
+        .init(
+            navigationService: ServiceLocator.shared.navigationService,
+            navigationAction: navigationAction
+        )
     }
 }

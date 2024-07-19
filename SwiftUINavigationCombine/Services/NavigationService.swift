@@ -22,7 +22,8 @@ final class NavigationService: NavigationServiceRepresentable {
 
     var action = PassthroughSubject<TabAction, Never>()
     var showSheetAction = PassthroughSubject<NavigationService.Destination.Identifier, Never>()
-
+    
+    // TODO: Mudar para PassthroughSubject
     @Published private var state: NavigationService.State
     var statePublisher: Published<NavigationService.State>.Publisher { $state }
 
