@@ -30,7 +30,7 @@ struct AppView<ViewModel: AppViewModelRepresentable>: View {
                             }
                     }
                 }
-                .sheet(isPresented: $viewModel.appState.sheetIsPresented) {
+                .sheet(isPresented: $viewModel.sheetIsPresented) {
                     if case .presenting(let sheetViewModel) = viewModel.appState.sheetState {
                         ContainerView(viewModel: sheetViewModel)
                     }

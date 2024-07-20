@@ -11,7 +11,7 @@ import SwiftUI
 
 protocol AppViewModelRepresentable: ObservableObject {
 
-    var appState: AppViewModel.AppState { get set }
+    var appState: AppViewModel.AppState { get }
     
     var sheetIsPresented: Bool { get set }
 
@@ -49,12 +49,16 @@ final class AppViewModel: AppViewModelRepresentable {
     private func setUpBindings() {
 
         navigationService.showSheetAction
-            .map { identifier in
+            .map { [weak self] identifier in
+
+                guard let self else { return false }
 
                 let sheetViewModel = AppViewModel.makeContainerViewModel(container: .sheet, identifier: identifier)
-                return .presenting(sheetViewModel)
+                appState.sheetState = .presenting(sheetViewModel)
+
+                return true
             }
-            .assign(to: &appState.$sheetState)
+            .assign(to: &$sheetIsPresented)
     }
 
     func dismissSheet() {
@@ -65,22 +69,10 @@ final class AppViewModel: AppViewModelRepresentable {
 
 extension AppViewModel {
 
-    class AppState: ObservableObject {
+    class AppState {
 
         var tabsState: TabState = .initial
-
-        @Published var sheetState: SheetState = .dismissed {
-            didSet {
-                switch sheetState {
-                case .dismissed:
-                    sheetIsPresented = false
-                case .presenting:
-                    sheetIsPresented = true
-                }
-            }
-        }
-
-        @Published var sheetIsPresented: Bool = false
+        var sheetState: SheetState = .dismissed
 
         enum TabState {
 
