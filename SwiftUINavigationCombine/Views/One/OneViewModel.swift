@@ -48,8 +48,7 @@ final class OneViewModel: OneViewModelRepresentable {
                     let threeViewModel = ThreeViewModel.make(navigationAction: navigationAction)
                     navigationAction.send(.push(.three(threeViewModel)))
                 case .presentOne:
-                    let newNavigationAction = PassthroughSubject<Sheet.NavigationAction, Never>()
-                    let oneViewModel = OneViewModel.make(navigationAction: newNavigationAction)
+                    let oneViewModel = OneViewModel.make(navigationAction: navigationAction)
                     navigationAction.send(.present(.one(oneViewModel)))
                 }
             }
